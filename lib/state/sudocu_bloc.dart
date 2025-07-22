@@ -84,9 +84,7 @@ class SudocuBloc extends Bloc<SudocuEvent, SudocuState> {
   void _handleTimerTicked(TimerTicked event, Emitter<SudocuState> emit) {
     if (_remainingSeconds <= 0) {
       _timer?.cancel();
-
-      emit(state.copyWith(time: '0:00', isFinished: true, isPaused: true));
-      return;
+      add(SubmitSudocuEvent(board: _initializeBoard()));
     }
 
     _remainingSeconds--;

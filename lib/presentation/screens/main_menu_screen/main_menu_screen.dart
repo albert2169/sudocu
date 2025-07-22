@@ -29,58 +29,56 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
   Widget build(BuildContext context) {
     final colors = SudocuColorTheme.of(context);
 
-    return SafeArea(
-      child: Scaffold(
-        appBar: CustomAppBar(
-          left: GestureDetector(
-            onTap: () {},
-            child: Icon(Icons.settings, color: colors.secondary, size: 40),
-          ),
-          right: GestureDetector(
-            onTap: () {},
-            child: Icon(Icons.bar_chart, color: colors.secondary, size: 40),
-          ),
+    return Scaffold(
+      appBar: CustomAppBar(
+        left: GestureDetector(
+          onTap: () {},
+          child: Icon(Icons.settings, color: colors.secondary, size: 40),
         ),
-        backgroundColor: colors.backgroundPrimary,
-        body: Padding(
-          padding: const EdgeInsets.only(top: 70, left: 61, right: 61),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Center(child: HugeTextWidget(text: 'SLUDOKU')),
-              const SizedBox(height: 30),
-              for (final level in GameLevelEnum.values) ...[
-                Center(
-                  child: GameLevelTextButton(
-                    onTap: () => _onLevelTap(level),
-                    isActive: selectedLevel == level,
-                    levelText: level.name,
-                  ),
-                ),
-                const SizedBox(height: 25),
-              ],
-              CustomButton(
-                color: colors.backgroundSecondary,
-                title: 'NEW GAME',
-                onTap: () {
-                  context.router.push(SudokuRoute(gameLevel: selectedLevel!, isNewGame: true));
-                },
-              ),
-              const SizedBox(height: 25),
-              CustomButton(color: colors.secondary, title: 'CONTINUE', onTap: () {}),
-              const SizedBox(height: 25),
+        right: GestureDetector(
+          onTap: () {},
+          child: Icon(Icons.bar_chart, color: colors.secondary, size: 40),
+        ),
+      ),
+      backgroundColor: colors.backgroundPrimary,
+      body: Padding(
+        padding: const EdgeInsets.only(top: 70, left: 61, right: 61),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Center(child: HugeTextWidget(text: 'SLUDOKU')),
+            const SizedBox(height: 30),
+            for (final level in GameLevelEnum.values) ...[
               Center(
                 child: GameLevelTextButton(
-                  onTap: () {
-                    context.router.push(SudokuRoute(gameLevel: selectedLevel!, isNewGame: false));
-                  },
-                  isActive: false,
-                  levelText: 'RULES',
+                  onTap: () => _onLevelTap(level),
+                  isActive: selectedLevel == level,
+                  levelText: level.name,
                 ),
               ),
+              const SizedBox(height: 25),
             ],
-          ),
+            CustomButton(
+              color: colors.backgroundSecondary,
+              title: 'NEW GAME',
+              onTap: () {
+                context.router.push(SudokuRoute(gameLevel: selectedLevel!, isNewGame: true));
+              },
+            ),
+            const SizedBox(height: 25),
+            CustomButton(
+              color: colors.secondary,
+              title: 'CONTINUE',
+              onTap: () {
+                context.router.push(SudokuRoute(gameLevel: selectedLevel!, isNewGame: false));
+              },
+            ),
+            const SizedBox(height: 25),
+            Center(
+              child: GameLevelTextButton(onTap: () => context.router.push(RulesRoute()), isActive: false, levelText: 'RULES'),
+            ),
+          ],
         ),
       ),
     );

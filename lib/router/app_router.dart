@@ -9,5 +9,6 @@ class AppRouter extends RootStackRouter {
     AutoRoute(page: SplashRoute.page, initial: true ),
     AutoRoute(page: MainMenuRoute.page),
     AutoRoute(page: SudokuRoute.page),
+    AutoRoute(page: RulesRoute.page),
   ];
 }

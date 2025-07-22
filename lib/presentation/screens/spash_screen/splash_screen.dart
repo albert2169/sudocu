@@ -20,22 +20,20 @@ class SplashScreen extends StatelessWidget {
       }
     });
 
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: colors.backgroundPrimary,
-        body: Center(
-          child: Padding(
-            padding: const EdgeInsets.only(top: 120),
-            child: Column(mainAxisAlignment: MainAxisAlignment.start, children: const [Logo()]),
-          ),
+    return Scaffold(
+      backgroundColor: colors.backgroundPrimary,
+      body: Center(
+        child: Padding(
+          padding: const EdgeInsets.only(top: 120),
+          child: Column(mainAxisAlignment: MainAxisAlignment.start, children: const [Logo()]),
         ),
-        bottomNavigationBar: Padding(
-          padding: const EdgeInsets.only(bottom: 50),
-          child: Text(
-            'Privacy and Terms',
-            textAlign: TextAlign.center,
-            style: TextStyle(color: colors.secondary, fontSize: 20),
-          ),
+      ),
+      bottomNavigationBar: Padding(
+        padding: const EdgeInsets.only(bottom: 50),
+        child: Text(
+          'Privacy and Terms',
+          textAlign: TextAlign.center,
+          style: TextStyle(color: colors.secondary, fontSize: 20),
         ),
       ),
     );

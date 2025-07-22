@@ -9,6 +9,7 @@ import 'package:sudocu/presentation/custom_widgets/load_state_enum.dart';
 import 'package:sudocu/presentation/custom_widgets/show_dialog_function.dart';
 import 'package:sudocu/presentation/screens/sudocu_screen/widgets/input_color_dot.dart';
 import 'package:sudocu/presentation/screens/sudocu_screen/widgets/sudoku_cell.dart';
+import 'package:sudocu/router/app_router.gr.dart';
 import 'package:sudocu/state/sudocu_bloc.dart';
 import 'package:sudocu/state/sudocu_event.dart';
 import 'package:sudocu/state/sudocu_state.dart';
@@ -123,7 +124,10 @@ class _SudokuScreenState extends State<SudokuScreen> {
       },
       builder: (context, state) {
         if (state.loadState == LoadState.loading) {
-          return Center(child: CustomLoadingWidget());
+          return Container(
+            color: colors.backgroundPrimary,
+            child: Center(child: CustomLoadingWidget()),
+          );
         }
         _board = [...state.currentBoard];
         final isCompleted = _isBoardCompletelyFilled();
@@ -137,11 +141,25 @@ class _SudokuScreenState extends State<SudokuScreen> {
                   context.read<SudocuBloc>().add(TickTimerStopEvent());
                 },
                 child: GestureDetector(
-                  onTap: !isCompleted
+                  onTap: isCompleted
                       ? () {
                           context.read<SudocuBloc>().add(SubmitSudocuEvent(board: _board));
                         }
-                      : null,
+                      : () {
+                          showCustomDialog(
+                            context: context,
+                            title: 'Puzzle Incomplete',
+                            message: 'Fields cannot be empty before submiting',
+                            actions: [
+                              TextButton(
+                                onPressed: () {
+                                  Navigator.of(context, rootNavigator: true).pop();
+                                },
+                                child: Text('Continue'),
+                              ),
+                            ],
+                          );
+                        },
                   child: Text(
                     'SUBMIT',
                     style: TextStyle(
@@ -239,7 +257,13 @@ class _SudokuScreenState extends State<SudokuScreen> {
                     ),
                     SizedBox(
                       width: 150,
-                      child: CustomButton(onTap: () {}, title: 'RULES', color: colors.secondary),
+                      child: CustomButton(
+                        onTap: () {
+                          context.router.push(RulesRoute());
+                        },
+                        title: 'RULES',
+                        color: colors.secondary,
+                      ),
                     ),
                   ],
                 ),

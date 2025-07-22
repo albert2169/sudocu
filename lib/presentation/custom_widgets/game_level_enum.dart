@@ -23,7 +23,7 @@ extension GameLevelName on GameLevelEnum {
       case GameLevelEnum.hard:
         return 10;
       case GameLevelEnum.expert:
-        return 5;
+        return 1;
     }
   }
 }
