@@ -5,29 +5,24 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? title;
   final Widget? right;
 
-  const CustomAppBar({
-    super.key,
-    this.left,
-    this.title,
-    this.right,
-  });
+  const CustomAppBar({super.key, this.left, this.title, this.right});
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Container(
         height: preferredSize.height,
-        padding: const EdgeInsets.only(left:  30, right: 30, top: 30),
+        padding: const EdgeInsets.symmetric(horizontal: 16),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            left ?? const SizedBox(width: 48), 
-            Expanded(
-              child: Center(
-                child: title ?? const SizedBox(),
-              ),
+            SizedBox(
+              child: left ?? const SizedBox(),
             ),
-            right ?? const SizedBox(width: 48),
+            Expanded(child: Center(child: title ?? const SizedBox())),
+            SizedBox(
+              child: right ?? const SizedBox(),
+            ),
           ],
         ),
       ),
@@ -35,5 +30,5 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   }
 
   @override
-  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+  Size get preferredSize => const Size.fromHeight(56); 
 }

@@ -64,14 +64,20 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                 color: colors.backgroundSecondary,
                 title: 'NEW GAME',
                 onTap: () {
-                  context.router.push(SudokuRoute());
+                  context.router.push(SudokuRoute(gameLevel: selectedLevel!, isNewGame: true));
                 },
               ),
               const SizedBox(height: 25),
               CustomButton(color: colors.secondary, title: 'CONTINUE', onTap: () {}),
               const SizedBox(height: 25),
               Center(
-                child: GameLevelTextButton(onTap: () {}, isActive: false, levelText: 'RULES'),
+                child: GameLevelTextButton(
+                  onTap: () {
+                    context.router.push(SudokuRoute(gameLevel: selectedLevel!, isNewGame: false));
+                  },
+                  isActive: false,
+                  levelText: 'RULES',
+                ),
               ),
             ],
           ),

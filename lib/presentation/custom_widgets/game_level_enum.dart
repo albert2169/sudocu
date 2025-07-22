@@ -13,4 +13,17 @@ extension GameLevelName on GameLevelEnum {
         return 'Expert';
     }
   }
+
+  double get time {
+    switch (this) {
+      case GameLevelEnum.easy:
+        return 20;
+      case GameLevelEnum.medium:
+        return 15;
+      case GameLevelEnum.hard:
+        return 10;
+      case GameLevelEnum.expert:
+        return 5;
+    }
+  }
 }

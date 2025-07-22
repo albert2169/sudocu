@@ -6,8 +6,8 @@ import 'package:sudocu/router/app_router.gr.dart';
 class AppRouter extends RootStackRouter {
   @override
   List<AutoRoute> get routes => [
-    AutoRoute(page: SplashRoute.page, ),
+    AutoRoute(page: SplashRoute.page, initial: true ),
     AutoRoute(page: MainMenuRoute.page),
-    AutoRoute(page: SudokuRoute.page, initial: true),
+    AutoRoute(page: SudokuRoute.page),
   ];
 }
