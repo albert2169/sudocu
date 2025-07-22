@@ -31,13 +31,15 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
 
     return Scaffold(
       appBar: CustomAppBar(
-        left: GestureDetector(
-          onTap: () {},
+        right: GestureDetector(
+          onTap: () => context.router.push(Settings()),
           child: Icon(Icons.settings, color: colors.secondary, size: 40),
         ),
-        right: GestureDetector(
-          onTap: () {},
-          child: Icon(Icons.bar_chart, color: colors.secondary, size: 40),
+        left: GestureDetector(
+          onTap: () {
+            context.router.pop();
+          },
+          child: Icon(Icons.arrow_back, color: colors.secondary, size: 40),
         ),
       ),
       backgroundColor: colors.backgroundPrimary,
@@ -76,7 +78,11 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
             ),
             const SizedBox(height: 25),
             Center(
-              child: GameLevelTextButton(onTap: () => context.router.push(RulesRoute()), isActive: false, levelText: 'RULES'),
+              child: GameLevelTextButton(
+                onTap: () => context.router.push(RulesRoute()),
+                isActive: false,
+                levelText: 'RULES',
+              ),
             ),
           ],
         ),

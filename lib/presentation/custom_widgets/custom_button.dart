@@ -4,7 +4,7 @@ import 'package:sudocu/theme/colors/sudocu_color_theme.dart';
 class CustomButton extends StatelessWidget {
   final VoidCallback onTap;
   final String title;
-  final Color color;
+  final Color? color;
   const CustomButton({super.key, required this.onTap, required this.title, required this.color});
 
   @override
