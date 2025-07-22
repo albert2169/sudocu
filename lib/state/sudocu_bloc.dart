@@ -38,12 +38,12 @@ class SudocuBloc extends Bloc<SudocuEvent, SudocuState> {
     FetchInitialBoardEvent event,
     Emitter<SudocuState> emit,
   ) async {
-    emit(state.copyWith(loadState: LoadState.loading));
-    await Future.delayed(const Duration(seconds: 2));
-
     if (!event.isNewGame) {
       emit(state.copyWith(loadState: LoadState.loaded));
+      return;
     }
+    emit(state.copyWith(loadState: LoadState.loading));
+    await Future.delayed(const Duration(seconds: 2));
 
     final board = _initializeBoard();
     final levelMinutes = event.gameLevel.time;

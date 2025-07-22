@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:sudocu/presentation/custom_widgets/custom_app_bar.dart';
 import 'package:sudocu/presentation/custom_widgets/huge_text_widget.dart';
+import 'package:sudocu/router/app_router.gr.dart';
 import 'package:sudocu/theme/colors/sudocu_color_theme.dart';
 
 @RoutePage()
@@ -40,10 +41,13 @@ class _SettingsState extends State<Settings> {
           children: [
             Center(child: HugeTextWidget(text: 'SETTINGS')),
             const SizedBox(height: 40),
-            Text(
-              'Privacy and Terms',
-              textAlign: TextAlign.center,
-              style: TextStyle(color: colors.primary, fontSize: 20),
+            GestureDetector(
+              onTap: () => context.router.push(RulesRoute()),
+              child: Text(
+                'Privacy and Terms',
+                textAlign: TextAlign.center,
+                style: TextStyle(color: colors.primary, fontSize: 20),
+              ),
             ),
             const SizedBox(height: 20),
             Divider(color: colors.secondary),
@@ -67,8 +71,8 @@ class _SettingsState extends State<Settings> {
                       });
                     },
                     activeColor: Colors.white,
-                    inactiveThumbColor: colors.backgroundPrimary, // Example inactive thumb color
-                    inactiveTrackColor: Colors.white, // Example inactive track color
+                    inactiveThumbColor: colors.backgroundPrimary,
+                    inactiveTrackColor: Colors.white, 
                   ),
                 ),
               ],
